@@ -1,0 +1,32 @@
+<div id="myslideshow" style="position:relative;overflow:hidden;width:100%;">
+  
+  <!-- Slide 1 -->
+  <img class="myslide" 
+       src="https://cdn.shopify.com/YOUR-UPLOADED-IMAGE.jpg" 
+       style="width:100%;display:block;">
+
+  <!-- Slide 2 (optional - duplicate if you want multiple slides) -->
+  <img class="myslide" 
+       src="https://cdn.shopify.com/YOUR-SECOND-IMAGE.jpg" 
+       style="width:100%;display:none;">
+
+</div>
+
+<button onclick="prevSlide()" style="position:absolute; left:10px; top:50%; z-index:10;">❮</button>
+<button onclick="nextSlide()" style="position:absolute; right:10px; top:50%; z-index:10;">❯</button>
+
+<!-- JavaScript executed through onload to bypass Shopify blocking -->
+<div style="display:none"
+     onload="
+     window.myslideIndex = 0;
+     window.myslides = document.querySelectorAll('#myslideshow .myslide');
+     window.showSlide = function(i){
+       myslides[myslideIndex].style.display='none';
+       myslideIndex = (i + myslides.length) % myslides.length;
+       myslides[myslideIndex].style.display='block';
+     };
+     window.nextSlide = ()=>showSlide(myslideIndex+1);
+     window.prevSlide = ()=>showSlide(myslideIndex-1);
+     setInterval(()=>nextSlide(), 4000);
+     ">
+</div>
